@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+
+
+ <html ng-app="app">
+    <head>
+
+    </head>
+
+    <body>
+      <div id="title" ng-controller="Controller">
+        <h1>nightmaretris</h1>
+        <h3>Arrow keys to move/rotate. Space to pause.</h3>
+        <h2 class="score">0</h2>
+        <button onclick="makeInvisible()">NIGHTMARE</button>
+      </div>
+      <div id="container">
+      </div>
+      
+      <script src="bower_components/angular/angular.min.js"></script>
+      <script src="app/controller.js"></script>
+
+      <script src="bower_components/d3/d3.min.js"></script>
+      <script src="bower_components/underscore/underscore-min.js"></script>
+
+      <script src="app/tetromino.js"></script>
+      <script src="app/square.js"></script>
+      <script src="app/tblock.js"></script>
+      <script src="app/rightl.js"></script>
+      <script src="app/leftl.js"></script>
+      <script src="app/straight.js"></script>     
+      <script src="app/sblock.js"></script>     
+      <script src="app/zblock.js"></script>     
+
+      <script src="app/field.js"></script>
+
+      <script src="app/app.js"></script>
+    </body>
+</html>
