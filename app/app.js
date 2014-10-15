@@ -1,4 +1,4 @@
-var grid_height = 22;
+var grid_height = 15;
 var grid_width = 10;
 var block_size = 30;
 
