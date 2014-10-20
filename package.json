@@ -19,6 +19,11 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^1.9.2",
+    "gulp": "^3.8.8",
+    "karma": "^0.12.24",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.5",
+    "karma-mocha": "^0.1.9",
     "mocha": "^1.21.5"
   }
 }
