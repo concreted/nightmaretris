@@ -1,0 +1,19 @@
+{
+  "name": "nightmaretris",
+  "version": "1.0.0",
+  "description": "> Open up this file in an editor to see the comment block",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/concreted/nightmaretris.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/concreted/nightmaretris/issues"
+  },
+  "homepage": "https://github.com/concreted/nightmaretris"
+}
