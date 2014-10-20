@@ -4,7 +4,7 @@
   "description": "> Open up this file in an editor to see the comment block",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/concreted/nightmaretris/issues"
   },
-  "homepage": "https://github.com/concreted/nightmaretris"
+  "homepage": "https://github.com/concreted/nightmaretris",
+  "dependencies": {
+    "chai": "^1.9.2",
+    "mocha": "^1.21.5"
+  }
 }
