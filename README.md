@@ -1,4 +1,5 @@
-# nightmaretris #
+# nightmaretris [![Build Status](https://travis-ci.org/concreted/nightmaretris.svg?branch=tests)](https://travis-ci.org/concreted/nightmaretris)#
+
 
 > Open up this file in an editor to see the comment block
 
