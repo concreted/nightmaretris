@@ -2,8 +2,7 @@ language: node_js
 node_js:
   - 0.10
 install:
-  - sudo -H $(which npm) install -g mocha
-  - sudo -H $(which npm) install -g bower
+  - sudo -H $(which npm) install -g mocha bower karma
   - bower install
   - npm install
 after_success:
