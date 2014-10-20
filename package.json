@@ -16,7 +16,8 @@
     "url": "https://github.com/concreted/nightmaretris/issues"
   },
   "homepage": "https://github.com/concreted/nightmaretris",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "chai": "^1.9.2",
     "mocha": "^1.21.5"
   }

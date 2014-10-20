@@ -5,3 +5,4 @@ install:
   - sudo $(which npm) install -g mocha
   - sudo $(which npm) install -g bower
   - bower install
+  - npm install
