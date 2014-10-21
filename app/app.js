@@ -1,6 +1,9 @@
-var grid_height = 22;
-var grid_width = 10;
+var grid_height = 6;
+var grid_width = 4;
 var block_size = 30;
+
+var pieces = [Straight]
+// [Straight, ZBlock, SBlock, LeftL, TBlock, RightL]
 
 var invisible = false;
 
@@ -79,7 +82,7 @@ var updateGrid = function(positions) {
 var width = grid_width * 30,
 height = grid_height * 30;
 
-var field = new Field(grid_height, grid_width);
+var field = new Field(grid_height, grid_width, pieces);
 var grid = field.grid;
 
 var svg = d3.select("body").append("svg")

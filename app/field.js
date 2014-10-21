@@ -11,7 +11,7 @@ var Field = function(height, width, pieces) {
   this.placing = false;
 
   // pieces constructors in array format
-  this.pieces = [Straight, ZBlock, SBlock, LeftL, TBlock, RightL];
+  this.pieces = pieces || [Straight, ZBlock, SBlock, LeftL, TBlock, RightL];
 
   this.score = 0;
 
@@ -22,7 +22,7 @@ var Field = function(height, width, pieces) {
 Field.prototype.newActive = function() {
   var pieceType = this.pieces[Math.floor(Math.random() * this.pieces.length)];
   //var pieceType = this.pieces[0];
-  this.active = new pieceType(5,1,30,this);
+  this.active = new pieceType(this.width/2,1,30,this);
 
   // _.each(this.active.position(), function(pos) {
   //   console.log(pos.x + ', ' + pos.y);
