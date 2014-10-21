@@ -1,5 +1,5 @@
-var grid_height = 6;
-var grid_width = 4;
+var grid_height = 15;
+var grid_width = 10;
 var block_size = 30;
 
 var pieces = [Straight]
@@ -83,7 +83,6 @@ var width = grid_width * 30,
 height = grid_height * 30;
 
 var field = new Field(grid_height, grid_width, pieces);
-var grid = field.grid;
 
 var svg = d3.select("body").append("svg")
   .attr("width", width)
@@ -162,7 +161,6 @@ d3.select("body").on("keydown", handleKeys);
 
 var placing = false;
 
-console.log(grid);
 inPlay = field.newActive();
 
 console.log(inPlay.location);
@@ -180,9 +178,7 @@ var gameLoop = function() {
   // ---------- this is d3 stuff--------------
   if (placing) {
     placePiece();
-
     field.clearRows();
-    //debugger;
     console.log('updating positions');
     updateGrid(field.displayPositions());
 
