@@ -11,7 +11,7 @@ var Field = function(height, width, pieces) {
   this.placing = false;
 
   // pieces constructors in array format
-  this.pieces = [Straight, ZBlock, SBlock, LeftL, TBlock, RightL];
+  this.pieces = pieces || [Straight, ZBlock, SBlock, LeftL, TBlock, RightL];
 
   this.score = 0;
 
@@ -22,7 +22,7 @@ var Field = function(height, width, pieces) {
 Field.prototype.newActive = function() {
   var pieceType = this.pieces[Math.floor(Math.random() * this.pieces.length)];
   //var pieceType = this.pieces[0];
-  this.active = new pieceType(5,1,30,this);
+  this.active = new pieceType(Math.floor(this.width/2)-1,1,30,this);
 
   // _.each(this.active.position(), function(pos) {
   //   console.log(pos.x + ', ' + pos.y);
@@ -52,34 +52,32 @@ Field.prototype.isClear = function(dest) {
 }
 
 Field.prototype.clearRows = function() {
-  var toClear = [];
-
+  var newGrid = [];
+  var clearedCount = 0;
   for (var i = 0; i < this.grid.length; i++) {
-    if (isFull(this.grid[i])) {
-      toClear.push(i);
+    if (!isFull(this.grid[i])) {
+      newGrid.push(this.grid[i]);
+    }
+    else {
+      clearedCount++;
     }
   }
 
-  console.log(toClear);
-  //if (toClear.length > 0) debugger;
-  for (var i = 0; i < toClear.length; i++) {
-    var index = toClear[i];
-    this.grid.splice(index, 1);
-  }
+  this.grid = newGrid;
 
-  var newRows = makeGrid(toClear.length, this.width);
-  console.log('clearing ' + toClear.length + ' rows');
+  var newRows = makeGrid(clearedCount, this.width);
+  //console.log('clearing ' + toClear.length + ' rows');
   this.grid = newRows.concat(this.grid);
 
-  this.score += toClear.length;
-  if (toClear.length > 0) {
+  this.score += clearedCount;
+  if (clearedCount > 0) {
     console.log(this.score);
   }
 
   // ugly hack to render score
   //document.querySelector('.score').innerHTML = this.score;
 
-  return toClear.length;
+  return clearedCount;
 }
 
 var isFull = function(row) {
