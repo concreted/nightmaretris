@@ -46,12 +46,12 @@ var makeInvisible = function() {
 }
 
 var updateGrid = function(positions) {
- 
+
   var svg = d3.select('svg');
   var placed = svg.selectAll('.placed').data(positions);
- 
+
   placed.enter().append('rect');
-  
+
   placed//.transition()
     .attr('x', function(d, i) { return d.x; })
     .attr('y', function(d, i) { return d.y; })
@@ -203,7 +203,7 @@ var gameLoop = function() {
 
   // render in d3
   updateInPlay(inPlay);
-  updateGrid(field.displayPositions());  
+  updateGrid(field.displayPositions());
 
 
   if (!paused) {

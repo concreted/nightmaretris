@@ -1,4 +1,4 @@
-var Field = function(height, width) {
+var Field = function(height, width, pieces) {
   // instantiate grid
   this.grid = makeGrid(height, width);
 
@@ -10,7 +10,7 @@ var Field = function(height, width) {
   // dead piece flag (placing)
   this.placing = false;
 
-  // piece constructors
+  // pieces constructors in array format
   this.pieces = [Straight, ZBlock, SBlock, LeftL, TBlock, RightL];
 
   this.score = 0;
@@ -23,12 +23,12 @@ Field.prototype.newActive = function() {
   var pieceType = this.pieces[Math.floor(Math.random() * this.pieces.length)];
   //var pieceType = this.pieces[0];
   this.active = new pieceType(5,1,30,this);
-  
+
   // _.each(this.active.position(), function(pos) {
   //   console.log(pos.x + ', ' + pos.y);
   //   this.grid[pos.y][pos.x] = 1;
   // });
-  
+
   var positions = this.active.position();
 
   for (var i = 0; i < positions.length; i++) {
@@ -53,7 +53,7 @@ Field.prototype.isClear = function(dest) {
 
 Field.prototype.clearRows = function() {
   var toClear = [];
-  
+
   for (var i = 0; i < this.grid.length; i++) {
     if (isFull(this.grid[i])) {
       toClear.push(i);
@@ -67,7 +67,7 @@ Field.prototype.clearRows = function() {
     this.grid.splice(index, 1);
   }
 
-  var newRows = makeGrid(toClear.length, this.width); 
+  var newRows = makeGrid(toClear.length, this.width);
   console.log('clearing ' + toClear.length + ' rows');
   this.grid = newRows.concat(this.grid);
 
@@ -77,7 +77,7 @@ Field.prototype.clearRows = function() {
   }
 
   // ugly hack to render score
-  document.querySelector('.score').innerHTML = this.score;
+  //document.querySelector('.score').innerHTML = this.score;
 
   return toClear.length;
 }

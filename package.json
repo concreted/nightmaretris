@@ -4,7 +4,7 @@
   "description": "> Open up this file in an editor to see the comment block",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "karma start --single-run --browsers PhantomJS"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,12 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^1.9.2",
+    "gulp": "^3.8.8",
+    "karma": "^0.12.24",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.5",
+    "karma-mocha": "^0.1.9",
+    "karma-phantomjs-launcher": "^0.1.4",
     "mocha": "^1.21.5"
   }
 }
