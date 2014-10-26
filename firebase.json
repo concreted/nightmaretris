@@ -1,6 +1,6 @@
 {
   "firebase": "nightmaretris",
-  "public": ".",
+  "public": "dist",
   "ignore": [
     "firebase.json",
     "**/.*",

@@ -50,7 +50,16 @@ gulp.task('minify', ['concat'], function() {
     .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('build', ['concat', 'minify']);
+gulp.task('html', ['minify'], function() {
+  return gulp
+    .src('index.html')
+    .pipe(htmlReplace({
+      js: 'js/production.min.js'
+    }))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('build', ['concat', 'minify', 'html']);
 
 gulp.task('default', function() {
   // place code for your default task here
