@@ -37,7 +37,7 @@ var updateInPlay = function(piece) {
     .attr('width', piece.size)
     .attr('fill', 'black')
     .attr('stroke', 'red')
-    .attr('stroke-width', 2)
+    .attr('stroke-width', 2);
 
   active.exit().remove();
 };
@@ -45,7 +45,7 @@ var updateInPlay = function(piece) {
 var makeInvisible = function() {
   console.log('clicked!');
   invisible = !invisible;
-}
+};
 
 var updateGrid = function(positions) {
 
@@ -62,7 +62,7 @@ var updateGrid = function(positions) {
     .attr('width', 30)
     .attr('fill', 'black')
     .attr('stroke', 'red')
-    .attr('stroke-width', 2)
+    .attr('stroke-width', 2);
 
   if (invisible) {
     placed
@@ -71,7 +71,7 @@ var updateGrid = function(positions) {
   }
 
   placed.exit().remove();
-}
+};
 
 //update loop - based on speed
 //update position of current piece
@@ -100,7 +100,7 @@ for (var i = 0; i < grid_height; i++) {
       .attr('x', block_size * j)
       .attr('y', block_size * i)
       .attr('stroke', 'white')
-      .attr('stroke-width', 2)
+      .attr('stroke-width', 2);
   }
 }
 
@@ -151,7 +151,7 @@ var handleKeys = function () {
   }
 
   inPlay.addToGrid();
-}
+};
 
 
 
@@ -207,6 +207,6 @@ var gameLoop = function() {
   if (!paused) {
     setTimeout(gameLoop, field.speed);
   }
-}
+};
 
-setTimeout(function() { gameLoop() }, field.speed);
+setTimeout(function() { gameLoop(); }, field.speed);
