@@ -71,7 +71,7 @@ Field.prototype.clearRows = function() {
 
   this.score += clearedCount;
   if (clearedCount > 0) {
-    console.log(this.score);
+    //console.log(this.score);
   }
 
   // ugly hack to render score

@@ -10,7 +10,7 @@ var inPlay = null;
 
 var displayGrid = function(grid) {
   for (var i = 0; i < grid.length; i++) {
-    console.log(JSON.stringify(grid[i]));
+    //console.log(JSON.stringify(grid[i]));
   }
 };
 
@@ -43,7 +43,7 @@ var updateInPlay = function(piece) {
 };
 
 var makeInvisible = function() {
-  console.log('clicked!');
+  //console.log('clicked!');
   invisible = !invisible;
 };
 
@@ -108,7 +108,7 @@ for (var i = 0; i < grid_height; i++) {
 var paused = false;
 
 var handleKeys = function () {
-  //console.log(event);
+  ////console.log(event);
   if (event.keyCode === 37 || event.keyCode === 38 || event.keyCode === 39 || event.keyCode === 40 || event.keyCode === 32)
   d3.event.preventDefault();
 
@@ -128,7 +128,7 @@ var handleKeys = function () {
   }
 
   if (event.keyCode === 32) {
-    console.log('space!');
+    //console.log('space!');
     //placing = true;
     paused = !paused;
     if (!paused) {
@@ -146,7 +146,7 @@ var handleKeys = function () {
   inPlay.removeFromGrid();
   //debugger;
   if (field.isClear(inPlay.checkDown())) {
-    console.log('clear!');
+    //console.log('clear!');
     placing = false;
   }
 
@@ -162,8 +162,8 @@ var placing = false;
 
 inPlay = field.newActive();
 
-console.log(inPlay.location);
-console.log(inPlay.position());
+//console.log(inPlay.location);
+//console.log(inPlay.position());
 
 
 // Needs to be in this order for some reason to apply
@@ -178,7 +178,7 @@ var gameLoop = function() {
   if (placing) {
     placePiece();
     field.clearRows();
-    console.log('updating positions');
+    //console.log('updating positions');
     updateGrid(field.displayPositions());
 
     inPlay = field.newActive();

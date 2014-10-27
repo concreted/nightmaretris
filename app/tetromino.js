@@ -9,7 +9,7 @@ var Tetromino = function(x, y, size, grid) {
 Tetromino.prototype.positionDisplay = function() {
   var currentPositions = this.position();
   var displayPositions = [];
-  
+
   for (var i = 0; i < currentPositions.length; i++) {
     var currentPos = currentPositions[i];
     var pos = {};
@@ -30,25 +30,25 @@ Tetromino.prototype.move = function(direction) {
   //debugger;
   if (direction === 'down' && this.grid.isClear(this.checkDown())) {
     this.y++;
-    console.log('droppin');
+    //console.log('droppin');
     moved = true;
   }
 
   if (direction === 'left' && this.grid.isClear(this.checkLeft())) {
     this.x--;
-    console.log('gon left');
+    //console.log('gon left');
     moved = true;
   }
 
   if (direction === 'right' && this.grid.isClear(this.checkRight())) {
     this.x++;
-    console.log('gon right');
+    //console.log('gon right');
     moved = true;
   }
 
   if (direction === 'rotateRight' && this.grid.isClear(this.checkRotateRight())) {
     this.orientation = (this.orientation + 1) % 4;
-    console.log('tatin right');
+    //console.log('tatin right');
     moved = true;
   }
 
@@ -78,7 +78,7 @@ Tetromino.prototype.removeFromGrid = function() {
 Tetromino.prototype.checkRight = function() {
   var currentPositions = this.position();
   var positions = [];
-  
+
   for (var i = 0; i < currentPositions.length; i++) {
     var currentPos = currentPositions[i];
     var pos = {};
@@ -93,7 +93,7 @@ Tetromino.prototype.checkRight = function() {
 Tetromino.prototype.checkLeft = function() {
   var currentPositions = this.position();
   var positions = [];
-  
+
   for (var i = 0; i < currentPositions.length; i++) {
     var currentPos = currentPositions[i];
     var pos = {};
@@ -124,4 +124,3 @@ Tetromino.prototype.checkRotateRight = function() {
   });
   return toCheck;
 }
-
