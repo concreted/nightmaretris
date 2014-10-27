@@ -17,17 +17,15 @@ gulp.task('lint', function() {
 
 gulp.task('clean-dist', function(cb) {
   //del(['dist/**']);         // Should use this if gulp-html-replace works
-  del(['dist/production.min.js']);
+  del(['dist/js/**']);
   cb();
 });
 
 gulp.task('concat', ['clean-dist'], function(cb) {
   return gulp
     .src([
-      'bower_components/angular/angular.js',
       'bower_components/d3/d3.min.js',
       'bower_components/underscore/underscore.js',
-      'app/controller.js',
       'app/tetromino.js',
       'app/piece-square.js',
       'app/piece-tblock.js',
