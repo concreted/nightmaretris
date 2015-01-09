@@ -1,6 +1,8 @@
+var Tetromino = require('./tetromino');
+
 var Square = function(x, y, size, grid){
   Tetromino.apply(this, arguments);
-  
+
 };
 
 Square.prototype = Object.create(Tetromino.prototype);
@@ -42,3 +44,5 @@ Square.prototype.isClear = function() {
     return (this.grid[pos.y+1] !== undefined && this.grid[pos.y+1][pos.x] === 0)
   });
 };
+
+module.exports = Square;

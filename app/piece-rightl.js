@@ -1,3 +1,5 @@
+var Tetromino = require('./tetromino');
+
 var RightL = function(x, y, size, grid){
   Tetromino.apply(this, arguments);
 };
@@ -32,3 +34,5 @@ RightL.prototype.position = function(orientation) {
             {x: (this.x+1), y: this.y+1}];
   }
 };
+
+module.exports = RightL;

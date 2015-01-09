@@ -43,7 +43,7 @@ var updateInPlay = function(piece) {
   active.exit().remove();
 };
 
-var makeInvisible = function() {
+window.makeInvisible = function() {
   //console.log('clicked!');
   invisible = !invisible;
 };

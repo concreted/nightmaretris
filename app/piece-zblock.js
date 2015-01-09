@@ -1,3 +1,5 @@
+var Tetromino = require('./tetromino');
+
 var ZBlock = function(x, y, size, grid){
   Tetromino.apply(this, arguments);
 };
@@ -21,7 +23,7 @@ ZBlock.prototype.position = function(orientation) {
     /*
       0
      0x
-     0 
+     0
      */
     return [{x: this.x, y: this.y},
             {x: (this.x-1), y: this.y+1},
@@ -29,3 +31,5 @@ ZBlock.prototype.position = function(orientation) {
             {x: (this.x), y: this.y-1}];
   }
 };
+
+module.exports = ZBlock;

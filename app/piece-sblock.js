@@ -1,3 +1,5 @@
+var Tetromino = require('./tetromino');
+
 var SBlock = function(x, y, size, grid){
   Tetromino.apply(this, arguments);
 };
@@ -29,3 +31,5 @@ SBlock.prototype.position = function(orientation) {
             {x: (this.x), y: this.y+1}];
   }
 };
+
+module.exports = SBlock;
