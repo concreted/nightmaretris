@@ -2,7 +2,8 @@ var grid_height = 15;
 var grid_width = 10;
 var block_size = 30;
 
-var pieces = [Straight, ZBlock, SBlock, LeftL, TBlock, RightL];
+var pieces = require('./pieces');
+var Field = require('./field');
 
 var invisible = false;
 
@@ -189,7 +190,6 @@ var gameLoop = function() {
 
     placing = false; // except this - should be part of TetrisField
   }
-
   else {
     if (inPlay.move('down')) {
       placing = false;

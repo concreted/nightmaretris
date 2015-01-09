@@ -124,3 +124,5 @@ Tetromino.prototype.checkRotateRight = function() {
   });
   return toCheck;
 }
+
+module.exports = Tetromino;

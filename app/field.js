@@ -1,3 +1,5 @@
+var allPieces = require('./pieces.js');
+
 var Field = function(height, width, pieces) {
   // instantiate grid
   this.grid = makeGrid(height, width);
@@ -11,7 +13,7 @@ var Field = function(height, width, pieces) {
   this.placing = false;
 
   // pieces constructors in array format
-  this.pieces = pieces || [Straight, ZBlock, SBlock, LeftL, TBlock, RightL];
+  this.pieces = pieces || allPieces;
 
   this.score = 0;
 
@@ -114,3 +116,5 @@ Field.prototype.displayPositions = function() {
   }
   return positions;
 }
+
+module.exports = Field;

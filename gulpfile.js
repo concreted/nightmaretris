@@ -5,6 +5,37 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var htmlReplace = require('gulp-html-replace');
+var browserify = require('browserify');
+var transform = require('vinyl-transform');
+var browserSync = require('browser-sync');
+
+// Static server
+gulp.task('browser-sync', function() {
+  browserSync({
+    files: "dist/**",          // Files to watch for changes
+    server: {
+      baseDir: "./",
+    }
+  });
+});
+
+var paths = {
+  content_scripts: [
+  'chrome/content/inject.js',
+  ]
+};
+
+gulp.task('browserify', function() {
+  var browserified = transform(function(filename) {
+    var b = browserify(filename);
+    return b.bundle();
+  });
+
+  return gulp.src(['./app/app.js'])
+  .pipe(browserified)
+  //.pipe(uglify())
+  .pipe(gulp.dest('./dist/js'));
+});
 
 var dest = 'dist/';
 
@@ -49,18 +80,12 @@ gulp.task('minify', ['concat'], function() {
     .pipe(gulp.dest('dist/js'));
 });
 
-// this is broken - produces a blank index.html
-// gulp.task('html', ['minify'], function() {
-//   return gulp
-//     .src('index.html')
-//     .pipe(htmlReplace({
-//       js: 'js/production.min.js'
-//     }))
-//     .pipe(gulp.dest('dist'));
-// });
+gulp.task('watch', function() {
+  gulp.watch('app/*.js', ['build']);
+});
 
-gulp.task('build', ['concat', 'minify']);
+gulp.task('build', ['browserify']);
 
-gulp.task('default', function() {
+gulp.task('default', ['watch', 'browser-sync'], function() {
   // place code for your default task here
 });

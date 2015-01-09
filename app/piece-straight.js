@@ -1,3 +1,5 @@
+var Tetromino = require('./tetromino');
+
 var Straight = function(x, y, size, grid){
   Tetromino.apply(this, arguments);
 };
@@ -10,7 +12,7 @@ Straight.prototype.position = function(orientation) {
   if (orientation === 0 || orientation === 2) {
     /*
        0x00
-        
+
      */
     return [{x: this.x, y: this.y},
             {x: (this.x-1), y: this.y},
@@ -30,3 +32,5 @@ Straight.prototype.position = function(orientation) {
             {x: (this.x), y: this.y-1}];
   }
 };
+
+module.exports = Straight;
