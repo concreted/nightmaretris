@@ -1,11 +1,11 @@
 var gulp = require('gulp');
-var del = require('del');
+var gutil = require('gulp-util');
 var jshint = require('gulp-jshint');
-var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var htmlReplace = require('gulp-html-replace');
 var browserify = require('browserify');
+var watchify = require('watchify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 var transform = require('vinyl-transform');
 var browserSync = require('browser-sync');
 
@@ -25,66 +25,48 @@ var paths = {
   ]
 };
 
-gulp.task('browserify', function() {
-  var browserified = transform(function(filename) {
-    var b = browserify(filename);
-    return b.bundle();
-  });
+// Set entry point for Browserify.
+// set fullPaths to false so bundle will not contain full filepaths
+watchify.args.fullPaths = false;
+var bundler = browserify('./app/app.js', watchify.args);
 
-  return gulp.src(['./app/shim.js', './app/app.js'])
-  .pipe(browserified)
-  //.pipe(uglify())
+// Browserify bundle helper function.
+// Calls browserify().bundle() with error logging and correct
+// source + destination.
+function bundle(b) {
+  return b.bundle()
+  // log errors if they happen
+  .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+  .pipe(source('app.js'))
+  // optional, remove if you dont want sourcemaps
+  //.pipe(buffer())
+  //.pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
+  //.pipe(sourcemaps.write('./')) // writes .map file
+  //
   .pipe(gulp.dest('./dist/js'));
-});
-
-var dest = 'dist/';
+};
 
 gulp.task('lint', function() {
   return gulp
-    .src('app/*.js')
+    .src('app/**/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('clean-dist', function(cb) {
-  //del(['dist/**']);         // Should use this if gulp-html-replace works
-  del(['dist/js/**']);
-  cb();
-});
-
-gulp.task('concat', ['clean-dist'], function(cb) {
-  return gulp
-    .src([
-      'bower_components/d3/d3.min.js',
-      'bower_components/underscore/underscore.js',
-      'app/tetromino.js',
-      'app/piece-square.js',
-      'app/piece-tblock.js',
-      'app/piece-rightl.js',
-      'app/piece-leftl.js',
-      'app/piece-straight.js',
-      'app/piece-sblock.js',
-      'app/piece-zblock.js',
-      'app/field.js',
-      'app/app.js'
-    ])
-    .pipe(concat('production.js'))
-    .pipe(gulp.dest('dist/js'));
-});
-
-gulp.task('minify', ['concat'], function() {
-  return gulp
-    .src('dist/js/production.js')
-    .pipe(uglify())
-    .pipe(rename('production.min.js'))
-    .pipe(gulp.dest('dist/js'));
-});
-
 gulp.task('watch', function() {
-  gulp.watch('app/*.js', ['build']);
+  var watcher = watchify(bundler);
+
+  watcher.on('update', function(ids) {
+    if (Array.isArray(ids)) {
+      console.log('[Watchify] File changed: ' + ids);
+    }
+    return bundle(watcher);
+  });
 });
 
-gulp.task('build', ['browserify']);
+gulp.task('build', function() {
+  bundle(bundler);
+});
 
 gulp.task('default', ['watch', 'browser-sync'], function() {
   // place code for your default task here
