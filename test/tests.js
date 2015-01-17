@@ -1,3 +1,8 @@
+var chai = require('chai'),
+    expect = chai.expect,
+    assert = chai.assert,
+    should = chai.should();
+
 it('should clear rows from the grid when full', function() {
   var field = new Field(2, 1);
   assert.deepEqual(field.grid, [[0],[0]]);

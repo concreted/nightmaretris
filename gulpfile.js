@@ -31,7 +31,7 @@ gulp.task('browserify', function() {
     return b.bundle();
   });
 
-  return gulp.src(['./app/app.js'])
+  return gulp.src(['./app/shim.js', './app/app.js'])
   .pipe(browserified)
   //.pipe(uglify())
   .pipe(gulp.dest('./dist/js'));
